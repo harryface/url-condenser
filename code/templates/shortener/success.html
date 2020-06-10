@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<div class=''>
+    <h1>{% trans "Success!" %}</h1>
+
+    <p>{{ object.url }}</p>
+
+    <p><a class='btn btn-link' href='{{ object.get_condensed_url }}'>{{ object.get_condensed_url }}</a></p>
+    <a class='btn btn-default'  href='/'>+ {% trans "New" %}</a>
+</div>
+{% endblock %}

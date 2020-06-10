@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %} 
+
+
+{% block content %}
+  <span id="replaceable-content"></span>
+
+  <form id="form" method="POST" action="{% url 'shortener:home' %}"> {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="{% trans 'Condense' %}" >
+  </form>
+{% endblock %}

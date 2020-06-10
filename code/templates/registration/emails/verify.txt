@@ -1,0 +1,11 @@
+Hello {{ name }},
+
+Please verify your account for {{ email }} by clicking the link below:
+
+{{ path }}
+
+Once you activate, you can login!
+
+Please if you are not the one that registered for this, kindly use the unsubscribe button for us.
+
+Thank you.

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load i18n %}
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>   </title>
+    <meta name="description" content="Url Shortening System">
+    <meta name="keywords" content="   ">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300|Raleway:300,400,900,700italic,700,300,600">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      body {
+        padding-top: 50px;
+        }
+      .main {
+        padding: 40px 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">{% trans "Url Shortener" %}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="{% if request.resolver_match.url_name == 'shortener' %}active{% endif %}"><a href="/">{% trans "Home" %}</a></li>
+            {% if user.is_authenticated %}
+            <li class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><a href="{% url 'account:dashboard' %}">{% trans "Dashboard" %}</a></li>
+            <li><a href="{% url 'logout'%}?next=/ ">{% trans "Logout" %}</a></li>
+            {% else %}
+            <li class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}"><a href="{% url 'login'%}">{% trans "Login" %}</a></li>
+            <li class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}"><a href="{% url 'signup'%}">{% trans "Register" %}</a></li>
+            {% endif %}
+        </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <section>
+      <div class="container main">
+        <div class = "row">
+          <div class = "col-md-8 col-md-offset-2">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-styled-left alert-arrow-left alert-component">
+                  <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                  {{message}}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="col-md-6 col-md-offset-3">
+              {% block content %}
+              
+
+
+
+              {% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script src='{% static "js/verify.js" %}'></script>
+
+  </body>
+</html>

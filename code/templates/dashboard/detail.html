@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+  <div class='row'>
+    <div class='col-md-8 col-md-offset-2'>
+      <p>{{object.url}}</p><hr>
+      <p>{% trans "Condensed Url" %} - {{object.get_condensed_url}}</p>
+      <p>{% trans "Created on" %} {{object.timestamp|date:"M d, Y"}}</p>
+      <p>{% trans "Number of visits" %} - {{object.urlviews.count}}</p>
+      <p>{% trans "list of Ip's" %} - {{object.urlviews.ip_address}}</p>
+    </div>
+  </div>
+
+{% endblock %}
